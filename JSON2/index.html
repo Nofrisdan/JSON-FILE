@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsing data Json</title>
+</head>
+<body>
+    <div class="coba">
+        <strong>Menggunakan JAvascript</strong>
+        <h1></h1>
+        <h2></h2>
+
+    </div>
+
+    <script>
+
+        //ambil elemen html untuk di isi data json
+        const h1 = document.querySelector('h1');
+        const h2 = document.querySelector('h2');
+
+        // Parsing data menggunakan AJAX
+        const ajax = new XMLHttpRequest();
+        
+        //ambil data json nya
+        const dataJson = "data.json";
+
+        //cek ajax apakah sudah siap jika sudah siap tampilakn datanya
+        ajax.onreadystatechange = function(){
+            if(ajax.readyState == 4 && ajax.status == 200){
+                const hasilJson = JSON.parse(ajax.responseText,true);
+                
+                h1.innerHTML = "Nama : " + hasilJson.name;
+                h2.innerHTML = "Pekerjaan : "+hasilJson.Pekerjaan;
+
+            }
+        }
+
+        //Tentukan Method datanya
+        ajax.open('GET',dataJson,true);
+
+        //kirim ajaxnya
+        ajax.send();
+        
+
+    </script>
+    
+</body>
+</html>
+
